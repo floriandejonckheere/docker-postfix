@@ -8,13 +8,15 @@ A custom configuration directory is provided in `etc/postfix`. It contains a def
 
 ### TLS
 
-Put your SSL/TLS RSA keys in `etc/ssl/` as `postfix.pem` and `postfix.key`. Make sure they have correct permissions.
+Put your SSL/TLS RSA keys in `etc/ssl/` as `postfix.pem` and `postfix.key`. Make sure they have correct permissions set.
 
 ### OpenDKIM
 
-Put your DKIM key in `etc/ssl/` as `dkim.key`. Make sure it has the correct permissions. Adjust the file `etc/opendkim.conf` to match your key.
+Add your IP addresses to `etc/opendkim/TrustedHosts`. Place your keys in `etc/ssl/dkim/` or generate them by running `opendkim-genkey -r -d mydomain.com`. Use whatever hierachy you desire, but make sure the keys have the correct permissions set. Edit the `etc/opendkim/KeyTable` and `etc/opendkim/SigningTable` files to reflect the domain-key mapping. Don't forget to set your domain's TXT record.
 
 ### SpamAssassin
+
+No configuration is needed.
 
 ## Build
 
