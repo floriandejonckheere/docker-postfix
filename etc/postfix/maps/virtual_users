@@ -1,0 +1,3 @@
+# user              directory under /var/mail/vhosts/
+user@mydomain.com   mydomain.com/user
+john@mydomain.com   mydomain.com/john

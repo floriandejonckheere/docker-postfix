@@ -14,7 +14,7 @@ ADD start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
 
 # Add vmail user
-RUN groupadd vmail && useradd vmail -g vmail -s /sbin/nologin -d /var/mail
+RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail
 RUN chmod 0777 /var/mail
 RUN chown -R vmail:vmail /var/mail
 

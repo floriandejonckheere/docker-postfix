@@ -1,16 +1,21 @@
 #!/bin/bash
 
+# Use absolute paths, don't append slash
+CONFDIR="$(pwd)/etc"
+DATADIR="$(pwd)/var"
+
 # This command create a container using ALL configuration file overrides
 docker run -d --name postfix \
-  -v $(pwd)/etc/postfix:/etc/postfix \
-  -v $(pwd)/var/mail:/etc/postfix \
-  -v $(pwd)/etc/ssl:/etc/ssl \
-  -v $(pwd)/etc/opendkim.conf:/etc/opendkim.conf \
-  -v $(pwd)/etc/opendkim:/etc/opendkim \
-  -v $(pwd)/etc/default/opendkim:/etc/default/opendkim \
-  -v $(pwd)/etc/aliases:/etc/aliases \
-  -v $(pwd)/etc/mailname:/etc/mailname \
-  -v $(pwd)/etc/default/spamassassin:/etc/default/spamassassin \
-  -v $(pwd)/etc/spamassassin/local.cf:/etc/spamassassin/local.cf \
+  -v ${CONFDIR}/postfix/main.cf:/etc/postfix/main.cf \
+  -v ${CONFDIR}/postfix/master.cf:/etc/postfix/master.cf \
+  -v ${CONFDIR}/postfix/maps/:/etc/postfix/maps/ \
+  -v ${CONFDIR}/ssl:/etc/ssl \
+  -v ${CONFDIR}/opendkim.conf:/etc/opendkim.conf \
+  -v ${CONFDIR}/opendkim:/etc/opendkim \
+  -v ${CONFDIR}/default/opendkim:/etc/default/opendkim \
+  -v ${CONFDIR}/aliases:/etc/aliases \
+  -v ${CONFDIR}/default/spamassassin:/etc/default/spamassassin \
+  -v ${CONFDIR}/spamassassin/local.cf:/etc/spamassassin/local.cf \
+  -v ${DATADIR}/mail:/var/mail \
   -p 127.0.0.1:125:25 \
   thalarion/postfix

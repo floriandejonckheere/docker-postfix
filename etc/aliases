@@ -1,2 +1,7 @@
 # See man 5 aliases for format
-postmaster:    root
+postmaster: root
+hostmaster: root
+webmaster: root
+info: root
+admin: root
+abuse: root
