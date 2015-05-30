@@ -10,6 +10,7 @@ docker run -d --name postfix \
   -v ${CONFDIR}/postfix/master.cf:/etc/postfix/master.cf \
   -v ${CONFDIR}/postfix/maps/:/etc/postfix/maps/ \
   -v ${CONFDIR}/ssl:/etc/ssl \
+  -v ${CONFDIR}/mailname:/etc/mailname \
   -v ${CONFDIR}/opendkim.conf:/etc/opendkim.conf \
   -v ${CONFDIR}/opendkim:/etc/opendkim \
   -v ${CONFDIR}/default/opendkim:/etc/default/opendkim \
