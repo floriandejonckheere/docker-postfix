@@ -14,7 +14,6 @@ docker run -d --name postfix \
   -v ${CONFDIR}/opendkim.conf:/etc/opendkim.conf \
   -v ${CONFDIR}/opendkim:/etc/opendkim \
   -v ${CONFDIR}/default/opendkim:/etc/default/opendkim \
-  -v ${CONFDIR}/aliases:/etc/aliases \
   -v ${CONFDIR}/default/spamassassin:/etc/default/spamassassin \
   -v ${CONFDIR}/spamassassin/local.cf:/etc/spamassassin/local.cf \
   -v ${DATADIR}/mail:/var/mail \

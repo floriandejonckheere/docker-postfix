@@ -12,6 +12,7 @@ RUN mkdir -p /app /var/mail /etc/postfix
 WORKDIR /app
 ADD start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
+RUN touch /etc/default/opendkim
 
 # Add vmail user
 RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail
