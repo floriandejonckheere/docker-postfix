@@ -1,3 +1,4 @@
-# user              directory under /var/mail/vhosts/
-user@mydomain.com   mydomain.com/user
-john@mydomain.com   mydomain.com/john
+# If the second argument is terminated with a slash,
+# maildir-style email delivering is enabled.
+user@mydomain.com   mydomain.com/user/
+john@mydomain.com   mydomain.com/john/
