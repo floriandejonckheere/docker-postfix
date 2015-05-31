@@ -1,10 +1,2 @@
 # NEVER put a virtual wildcard address in aliases
 alias@mydomain.com user@mydomain.com
-
-# Some default addresses
-postmaster@mydomain.com   user@mydomain.com
-hostmaster@mydomain.com   user@mydomain.com
-webmaster@mydomain.com   user@mydomain.com
-info@mydomain.com   user@mydomain.com
-admin@mydomain.com   user@mydomain.com
-abuse@mydomain.com   user@mydomain.com

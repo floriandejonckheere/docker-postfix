@@ -1,0 +1,3 @@
+# NEVER put a virtual wildcard address in aliases
+
+/^(postmaster|hostmaster|webmaster|info|admin|abuse)@mydomain.com/    user@mydomain.com
