@@ -8,11 +8,10 @@ RUN apt-get update
 RUN apt-get -y install postfix opendkim opendkim-tools sasl2-bin spamassassin spamc
 
 # Create app structure
-RUN mkdir -p /app /var/mail /etc/postfix
+RUN mkdir -p /app/ /var/mail/vhosts/ /etc/postfix/
 WORKDIR /app
 ADD start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
-RUN touch /etc/default/opendkim
 
 # Add vmail user
 RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail
@@ -24,7 +23,6 @@ RUN groupadd spamd && useradd -g spamd -s /sbin/nologin -d /var/log/spamassassin
 RUN mkdir -p /var/log/spamassassin
 RUN chown spamd:spamd /var/log/spamassassin
 
-VOLUME /etc/postfix
 VOLUME /var/mail
 
 EXPOSE 25
