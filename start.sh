@@ -19,6 +19,8 @@ touch /var/log/mail.{log,err,warn} /var/log/spamassassin/spamd.log
 chown syslog:adm /var/log/mail.*
 chown -R spamd:spamd /var/log/spamassassin
 
+echo -e "\e[33mStarting rsyslog...\e[0m"
+service rsyslog start
 echo -e "\e[33mStarting OpenDKIM...\e[0m"
 service opendkim start
 echo -e "\e[33mStarting saslauthd...\e[0m"
