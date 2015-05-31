@@ -5,7 +5,7 @@ MAINTAINER "Florian Dejonckheere <florian@floriandejonckheere.be>"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get -y install syslog-ng postfix opendkim opendkim-tools sasl2-bin spamassassin spamc
+RUN apt-get -y install postfix opendkim opendkim-tools sasl2-bin spamassassin spamc
 
 # Create app structure
 RUN mkdir -p /app/ /var/mail/ /etc/postfix/

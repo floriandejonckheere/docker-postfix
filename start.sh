@@ -18,10 +18,7 @@ echo -e "\e[33mSetting correct permissions...\e[0m"
 touch /var/log/mail.{log,err,warn} /var/log/spamassassin/spamd.log
 chown syslog:adm /var/log/mail.*
 chown -R spamd:spamd /var/log/spamassassin
-postfix set-permissions
 
-echo -e "\e[33mStarting syslog...\e[0m"
-service syslog-ng start
 echo -e "\e[33mStarting OpenDKIM...\e[0m"
 service opendkim start
 echo -e "\e[33mStarting saslauthd...\e[0m"
