@@ -8,13 +8,13 @@ RUN apt-get update
 RUN apt-get -y install postfix opendkim opendkim-tools sasl2-bin spamassassin spamc
 
 # Create app structure
-RUN mkdir -p /app/ /var/mail/vhosts/ /etc/postfix/
+RUN mkdir -p /app/ /var/mail/ /etc/postfix/
 WORKDIR /app
 ADD start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
 
 # Add vmail user
-RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail
+RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail/
 RUN chmod 0777 /var/mail
 RUN chown -R vmail:vmail /var/mail
 

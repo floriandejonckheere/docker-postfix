@@ -8,10 +8,13 @@ function handler() {
 trap handler ERR
 
 echo -e "\e[33mRegenerating virtual mappings...\e[33m"
+newaliases
 postmap /etc/postfix/maps/virtual_domains
 postmap /etc/postfix/maps/virtual_users
 postmap /etc/postfix/maps/virtual_alias_domains
 postmap /etc/postfix/maps/virtual_alias_users
+
+chown -R postfix:postfix /etc/postfix/
 
 echo -e "\e[33mStarting OpenDKIM...\e[33m"
 service opendkim start

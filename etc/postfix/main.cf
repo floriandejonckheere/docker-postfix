@@ -60,7 +60,7 @@ inet_protocols = all
 # Multi-domain setup
 virtual_mailbox_domains = hash:/etc/postfix/maps/virtual_domains
 virtual_mailbox_maps = hash:/etc/postfix/maps/virtual_users
-virtual_mailbox_base = /
+virtual_mailbox_base = /var/mail/
 virtual_alias_domains = hash:/etc/postfix/virtual_alias_domains
 virtual_alias_maps = hash:/etc/postfix/maps/virtual_alias_users
 virtual_minimum_uid = 100
