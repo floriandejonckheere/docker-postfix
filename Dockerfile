@@ -15,6 +15,7 @@ RUN chmod a+x /app/start.sh
 
 # Add vmail user
 RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail/
+RUN usermod -aG opendkim postfix
 RUN chmod 0777 /var/mail/
 RUN chown -R vmail:vmail /var/mail/
 
