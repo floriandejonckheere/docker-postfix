@@ -1,0 +1,13 @@
+[Unit]
+Description=Postfix container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a postfix
+ExecStop=/usr/bin/docker stop postfix
+
+[Install]
+WantedBy=local.target
+
