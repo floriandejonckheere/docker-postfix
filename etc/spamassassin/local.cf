@@ -7,6 +7,10 @@
 #
 ###########################################################################
 
+#   Host-specific details
+report_hostname MyDomain
+report_contact admin@mydomain.com
+
 #   Add *****SPAM***** to the Subject header of spam e-mails
 #
 rewrite_header Subject *****SPAM*****

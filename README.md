@@ -20,7 +20,7 @@ Don't forget to set your domain's TXT record.
 
 ### SpamAssassin
 
-No configuration is needed.
+Set the system's name and contact address in `etc/spamassassin/local.cf`.
 
 ## Build
 
