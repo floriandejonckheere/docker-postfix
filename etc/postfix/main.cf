@@ -57,7 +57,7 @@ recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = all
 
-# Multi-domain setup
+## Multi-domain setup with indexed flat file backend
 virtual_mailbox_domains = hash:/etc/postfix/maps/virtual_domains
 virtual_mailbox_maps = hash:/etc/postfix/maps/virtual_users
 virtual_mailbox_base = /var/mail/
@@ -66,3 +66,14 @@ virtual_alias_maps = hash:/etc/postfix/maps/virtual_alias_users, regexp:/etc/pos
 virtual_minimum_uid = 100
 virtual_uid_maps = static:5000
 virtual_gid_maps = static:5000
+
+## Multi-domain setup with LDAP backend
+## Don't forget to run 'make' in /etc/postfix/ldap/
+# virtual_mailbox_domains = ldap:/etc/postfix/ldap/ldap-domains
+# virtual_mailbox_maps = ldap:/etc/postfix/ldap/ldap-users
+# virtual_mailbox_base = /var/mail/
+# virtual_alias_domains = ldap:/etc/postfix/ldap/ldap-alias-domains
+# virtual_alias_maps = ldap:/etc/postfix/ldap/ldap-alias-users
+# virtual_minimum_uid = 100
+# virtual_uid_maps = static:5000
+# virtual_gid_maps = static:5000

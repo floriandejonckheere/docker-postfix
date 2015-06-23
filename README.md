@@ -6,7 +6,15 @@ This Dockerfile provides a container running Postfix over TLS, OpenDKIM, SpamAss
 
 ### Postfix
 
-The included configuration files are setup for a fully virtual system. To enable receiving on your local domain, edit `etc/postfix/main.cf` and `etc/mailname`. Define your virtual domains, users and aliases in `etc/postfix/maps/`.
+The included configuration files are setup for a fully virtual system. To enable receiving on your local domain, edit `etc/postfix/main.cf` and `etc/mailname`.
+
+**Flat file**
+
+Define your virtual domains, users and aliases in `etc/postfix/maps/`.
+
+**LDAP**
+
+Define your LDAP connection settings and scheme in `etc/posfix/ldap/*.conf`. Run `make` to generate the correct output files. Don't forget to use `postmap` to test your settings before deploying them! Enable the *LDAP* section at the bottom of `etc/postfix/main.cf`.
 
 ### TLS
 
