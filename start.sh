@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function handler() {
-  echo -e "\e[31mError on line $LINENO\e[0m"
-  exit 1
+	echo -e "\e[31mError on line $LINENO\e[0m"
+	exit 1
 }
 
 trap handler ERR
@@ -20,16 +20,10 @@ chown syslog:adm /var/log/mail.*
 chown -R spamd:spamd /var/log/spamassassin
 chown -R vmail:vmail /var/mail/
 
-echo -e "\e[33mStarting rsyslog...\e[0m"
-service rsyslog start
-echo -e "\e[33mStarting OpenDKIM...\e[0m"
-service opendkim start
-echo -e "\e[33mStarting saslauthd...\e[0m"
-#~ service saslauthd start
-echo -e "\e[33mStarting SpamAssassin...\e[0m"
-service spamassassin start
-echo -e "\e[33mStarting Postfix...\e[0m"
-service postfix start
+postfix -c /etc/postfix start
 
 echo -e "\e[33mStartup finished\e[0m"
-tail -F /var/log/mail.* /var/log/spamassassin/spamd.log
++while true; do
+	pidof master &> /dev/null || exit 1
+	sleep 5
++done
