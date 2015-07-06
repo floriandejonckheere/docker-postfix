@@ -5,7 +5,7 @@ MAINTAINER "Florian Dejonckheere <florian@floriandejonckheere.be>"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-	apt-get -y install postfix opendkim opendkim-tools sasl2-bin spamassassin spamc supervisord
+	apt-get -y install postfix opendkim opendkim-tools sasl2-bin spamassassin spamc supervisor
 
 # Create app structure
 RUN mkdir -p /app/ /var/mail/ /etc/postfix/
@@ -13,8 +13,9 @@ WORKDIR /app
 ADD start.sh /app/start.sh
 RUN chmod a+x /app/start.sh
 
-# RSyslog
+# RSyslog and supervisor
 ADD rsyslog.conf /etc/rsyslog.conf
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Add vmail user
 RUN groupadd -g 5000 vmail && useradd vmail -u 5000 -g vmail -s /sbin/nologin -d /var/mail/

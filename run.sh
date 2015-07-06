@@ -18,7 +18,6 @@ docker run -d --name postfix \
 	-v ${CONFDIR}/default/opendkim:/etc/default/opendkim \
 	-v ${CONFDIR}/default/spamassassin:/etc/default/spamassassin \
 	-v ${CONFDIR}/spamassassin/local.cf:/etc/spamassassin/local.cf \
-	-v ${CONFDIR}/rsyslog.conf:/etc/rsyslog.conf \
 	-v ${DATADIR}/mail/:/var/mail/ \
 	-p 0.0.0.0:25:25 \
 	--dns=172.17.42.1 \
