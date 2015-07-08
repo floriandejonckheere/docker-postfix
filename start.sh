@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function handler() {
-	echo -e "\e[31mError on line $LINENO\e[0m"
-	exit 1
+  echo -e "\e[31mError on line $LINENO\e[0m"
+  exit 1
 }
 
 trap handler ERR
@@ -14,16 +14,16 @@ postmap /etc/postfix/maps/virtual_users
 postmap /etc/postfix/maps/virtual_alias_domains
 postmap /etc/postfix/maps/virtual_alias_users
 
-echo -e "\e[33mSetting correct permissions...\e[0m"
-touch /var/log/mail.{log,err,warn} /var/log/spamassassin/spamd.log
-chown syslog:adm /var/log/mail.*
-chown -R spamd:spamd /var/log/spamassassin
-chown -R vmail:vmail /var/mail/
+# Allow OpenDKIM and SA to start up
+sleep 5
+echo -e "\e[33mStarting Postfix...\e[0m"
+postfix start
 
-postfix -c /etc/postfix start
+# Allow postfix to spawn its minions
+sleep 5
 
-echo -e "\e[33mStartup finished\e[0m"
-+while true; do
-	pidof master &> /dev/null || exit 1
+while true; do
+	# Wait for postfix' master daemon
+	pidof master &>/dev/null || exit 1
 	sleep 5
-+done
+done

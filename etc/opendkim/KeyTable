@@ -1,1 +1,1 @@
-default._domainkey.mydomain.com mydomain.com:default:/etc/ssl/dkim/mydomain.com/default.private
+default._domainkey.mydomain.com mydomain.com:default:/etc/ssl/mydomain.com/default.private

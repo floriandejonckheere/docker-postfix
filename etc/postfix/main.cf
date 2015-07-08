@@ -12,21 +12,21 @@ append_dot_mydomain = no
 readme_directory = no
 
 # TLS parameters
-smtpd_tls_cert_file=/etc/ssl/postfix.pem
-smtpd_tls_key_file=/etc/ssl/postfix.key
+smtpd_tls_cert_file=/etc/ssl/mydomain.com/mydomain_com-bundle.crt
+smtpd_tls_key_file=/etc/ssl/mydomain.com/mydomain_com.key
 smtpd_use_tls=yes
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 smtpd_tls_security_level = may
-
+smtpd_tls_loglevel = 1
 # See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for
 # information on enabling SSL in the smtp client.
 
 # DKIM parameters
 milter_default_action = accept
 milter_protocol = 6
-smtpd_milters = inet:localhost:12345
-non_smtpd_milters = inet:localhost:12345
+smtpd_milters = unix:/var/run/opendkim/opendkim.sock
+non_smtpd_milters = $smtpd_milters
 
 # Limit DoS attacks
 default_process_limit = 100
@@ -37,9 +37,18 @@ header_size_limit = 51200
 message_size_limit = 10485760
 smtpd_recipient_limit = 100
 
-smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated reject_unauth_destination
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
+
+# SASL Auth
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = inet:dovecot.services.mydomain.com:12345
+smtpd_sasl_security_options = noanonymous, noplaintext
+# SASL over TLS
+smtpd_sasl_tls_security_options = noanonymous
+smtpd_tls_auth_only = yes
 
 # Debian specific:  Specifying a file name will cause the first
 # line of that file to be used as the name.  The Debian default
@@ -47,7 +56,7 @@ alias_database = hash:/etc/aliases
 #myorigin = /etc/mailname
 
 mydomain = mydomain.com
-myhostname = mail.$mydomain
+myhostname = $mydomain
 mydestination = localhost.localdomain, localhost
 relayhost =
 relay_domains =
