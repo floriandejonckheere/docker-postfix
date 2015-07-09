@@ -55,7 +55,7 @@ smtpd_tls_auth_only = yes
 # is /etc/mailname.
 #myorigin = /etc/mailname
 
-mydomain = mydomain.com
+mydomain = thalarion.be
 myhostname = $mydomain
 mydestination = localhost.localdomain, localhost
 relayhost =

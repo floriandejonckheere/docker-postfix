@@ -20,8 +20,8 @@ RUN chown -R vmail:vmail /var/mail/
 
 # OpenDKIM
 RUN usermod -aG opendkim postfix
-RUN mkdir -p /var/spool/postfix/var/run/opendkim /var/log/dkim-stats/
-RUN chown opendkim:opendkim /var/spool/postfix/var/run/opendkim /var/log/dkim-stats/
+RUN mkdir -p /var/run/opendkim/ /var/log/dkim-stats/
+RUN chown -R opendkim:opendkim /var/run/opendkim/ /var/log/dkim-stats/
 
 # SpamAssassin
 RUN groupadd spamd && useradd -g spamd -s /sbin/nologin -d /var/run/spamassassin/ spamd
