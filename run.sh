@@ -7,7 +7,7 @@ DATADIR="${BASEDIR}/var"
 CERTDIR="/data/ssl"
 
 # This command create a container using ALL configuration file overrides
-docker run -d $@ --name postfix \
+docker run $@ --name postfix \
 	-v ${CONFDIR}/postfix/main.cf:/etc/postfix/main.cf \
 	-v ${CONFDIR}/postfix/master.cf:/etc/postfix/master.cf \
 	-v ${CONFDIR}/postfix/maps/:/etc/postfix/maps/ \

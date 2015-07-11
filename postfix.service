@@ -1,13 +1,17 @@
 [Unit]
 Description=Postfix container
-Requires=docker.service
-After=docker.service
+Requires=docker.service postgresql.service
+After=docker.service postgresql.service
 
 [Service]
+TimeoutStartSec=0
 Restart=always
-ExecStart=/usr/bin/docker start -a postfix
-ExecStop=/usr/bin/docker stop postfix
+RestartSec=10s
+ExecStartPre=-/bin/docker stop postfix
+ExecStartPre=-/bin/docker rm postfix
+ExecStartPre=-/bin/docker pull thalarion/postfix
+ExecStart=/data/postfix/run.sh
 
 [Install]
-WantedBy=local.target
+WantedBy=multi-user.target
 
