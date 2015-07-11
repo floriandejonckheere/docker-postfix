@@ -1,7 +1,7 @@
 [Unit]
 Description=Postfix container
-Requires=docker.service postgresql.service
-After=docker.service postgresql.service
+Requires=docker.service dovecot.service thalariond.service
+After=docker.service dovecot.service thalariond.service
 
 [Service]
 TimeoutStartSec=0
